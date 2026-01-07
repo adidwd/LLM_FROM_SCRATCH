@@ -4,7 +4,7 @@ This project is inspired from Vizuara build LLM from Scratch youtube series. Thi
 
 **Credits**
 
-This code is inspired from teh youtube series: Buils LLM from scratch by Vizuara.
+This code is inspired from teh youtube series: Build LLM from scratch by Vizuara.
 
 **Link to Series**:https://www.youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu
 
