@@ -1,4 +1,4 @@
-**#LLM_FROM_SCRATCH**
+# LLM_FROM_SCRATCH
 
 This project is inspired from Vizuara build LLM from Scratch youtube series. This project is purely for learning intentions and include quite a good amount of experimental code as well which is not used finally. This repo is still in works and the code works till training LLM on mac laptop (can be done on cloud as well and changing device type to cuda)
 
@@ -6,11 +6,9 @@ This project is inspired from Vizuara build LLM from Scratch youtube series. Thi
 
 This code is inspired from teh youtube series: Build LLM from scratch by Vizuara.
 
-Link to Series:https://www.youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu
+**Link to Series**:https://www.youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu
 
 **Module definition:**
-
-
 
 Input_Target_Pairs: This creates the input and target data for training using opensource gpt2 enoder /decoder. create_input_output.py is the py file which is used in this project. Other files are just for learning perspective.
 
