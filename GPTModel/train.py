@@ -29,8 +29,8 @@ def evaluate_model(model,train_dataloader,val_dataloader,device,eval_iter):
 
     loss_calculator = calc_loss()
     with torch.no_grad():
-        train_loss=loss_calculator.calculate_loss_loader(train_dataloader,model,device)
-        val_loss=loss_calculator.calculate_loss_loader(val_dataloader,model,device)
+        train_loss=loss_calculator.calculate_loss_loader(train_dataloader,model,device, num_batches=eval_iter)
+        val_loss=loss_calculator.calculate_loss_loader(val_dataloader,model,device, num_batches=eval_iter)
     
     model.train()
 
@@ -87,24 +87,31 @@ def main():
     val_data=txt[split_idx:]
 
     #****** train data being convered to input and output*************
-    train_dataloader=create_dataloader_v1().dataloader(txt=train_data,batch_size=8,max_length=256,stride=4,shuffle=False)
+    train_dataloader=create_dataloader_v1().dataloader(txt=train_data,batch_size=16,max_length=256,stride=4,shuffle=False,num_workers=4, pin_memory=True)
     print(f"===============data loader _v1 done for train data================")
 
 
     #****** validation data being convered to input and output*************
-    val_dataloader=create_dataloader_v1().dataloader(txt=val_data,batch_size=8,max_length=256,stride=4,shuffle=False)
+    val_dataloader=create_dataloader_v1().dataloader(txt=val_data,batch_size=16,max_length=256,stride=4,shuffle=False,num_workers=4, pin_memory=True)
     print(f"=================data loader _v1 done for validation data==========")
 
     torch.manual_seed(123)
     model=GPTModel(cfg)
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+    else:
+        device = torch.device("cpu")
+    
     print(f"device ======================== {device}")
 
     model.to(device)
     loss_calculator = calc_loss()
     optimizer=torch.optim.AdamW(model.parameters(), lr=0.0005, weight_decay=0.1)
     num_epochs=10
-    train_loss,val_loss,tokens_seen=train_model(model,train_dataloader,val_dataloader,optimizer,device,num_epochs=num_epochs,eval_freq=5,eval_iter=5,start_context="Every effort moves you", tokenizer=tokenizer,loss_calculator=loss_calculator)
+    train_loss,val_loss,tokens_seen=train_model(model,train_dataloader,val_dataloader,optimizer,device,num_epochs=num_epochs,eval_freq=50,eval_iter=8,start_context="Every effort moves you", tokenizer=tokenizer,loss_calculator=loss_calculator)
     #with torch.no_grad():
     #    train_loss=loss_calculator.calculate_loss_loader(train_dataloader,model,device)
     #    val_loss=loss_calculator.calculate_loss_loader(val_dataloader,model,device)

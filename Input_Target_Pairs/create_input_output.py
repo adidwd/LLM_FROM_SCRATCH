@@ -37,7 +37,7 @@ class create_dataloader_v1():
 
         
         
-    def dataloader(self,txt,batch_size=8, max_length=4, stride=4, shuffle=False,drop_last=True,num_workers=0):
+    def dataloader(self,txt,batch_size=16, max_length=4, stride=4, shuffle=False,drop_last=True,num_workers=4, pin_memory=True):
         
         dataset=GPTDatasetV1(txt, self.tokenizer, max_length, stride)
         print(f"==============Dataset length: {len(dataset)}=================")
@@ -48,16 +48,17 @@ class create_dataloader_v1():
             batch_size=batch_size,
             shuffle=shuffle,
             drop_last=drop_last,
-            num_workers=num_workers
+            num_workers=num_workers,
+            pin_memory=pin_memory
         )
 
         return dataloader
     
-with open("verdict.txt","r",encoding="utf-8") as f:
-    txt=f.read()
+#with open("verdict.txt","r",encoding="utf-8") as f:
+#    txt=f.read()
 
 
-print(f"length of txt=={len(txt)}")
+#print(f"length of txt=={len(txt)}")
 
 
 #******Following 4 lines are commented since it is for whole data, we need to do this for train and test data seperately****
@@ -76,33 +77,32 @@ print(f"length of txt=={len(txt)}")
 #print(second_batch)
 
 
-train_ratio=0.9
-split_idx=int(train_ratio*len(txt))
-train_data=txt[:split_idx]
-val_data=txt[split_idx:]
+#train_ratio=0.9
+#split_idx=int(train_ratio*len(txt))
+#train_data=txt[:split_idx]
+#val_data=txt[split_idx:]
 
 #****** train data being convered to input and output*************
-train_dataloader=create_dataloader_v1().dataloader(txt=train_data,batch_size=8,max_length=256,stride=4,shuffle=False)
-print(f"===============data loader _v1 done for train data================")
-data_iter=iter(train_dataloader)
-train_input,train_target=next(data_iter)
+#train_dataloader=create_dataloader_v1().dataloader(txt=train_data,batch_size=16,max_length=256,stride=4,shuffle=False,num_workers=4, pin_memory=True)
+#print(f"===============data loader _v1 done for train data================")
+#data_iter=iter(train_dataloader)
+#train_input,train_target=next(data_iter)
 
 #****** validation data being convered to input and output*************
-val_dataloader=create_dataloader_v1().dataloader(txt=val_data,batch_size=8,max_length=256,stride=4,shuffle=False)
-print(f"=================data loader _v1 done for validation data==========")
-data_iter=iter(val_dataloader)
-
-val_input,val_target=next(data_iter)
+#val_dataloader=create_dataloader_v1().dataloader(txt=val_data,batch_size=16,max_length=256,stride=4,shuffle=False,num_workers=4, pin_memory=True)
+#print(f"=================data loader _v1 done for validation data==========")
+#data_iter=iter(val_dataloader)
+#val_input,val_target=next(data_iter)
 
 #****** Just checking the data for each input, output***************
 
-for x,y in train_dataloader:
-    print(f"printing the shape of train input and output data =={x.shape}  and  {y.shape}")
+#for x,y in train_dataloader:
+#    print(f"printing the shape of train input and output data =={x.shape}  and  {y.shape}")
 
 
 
-for x,y in val_dataloader:
-    print(f"printing the shape of validation input and output data =={x.shape}  and  {y.shape}")
+#for x,y in val_dataloader:
+#    print(f"printing the shape of validation input and output data =={x.shape}  and  {y.shape}")
 
 
 
