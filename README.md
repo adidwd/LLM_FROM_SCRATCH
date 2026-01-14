@@ -1,6 +1,6 @@
 # LLM_FROM_SCRATCH
 
-This project is inspired from Vizuara build LLM from Scratch youtube series. This project is purely for learning intentions and include quite a good amount of experimental code as well which is not used finally. This repo is still in works and the code works till training LLM on mac laptop (can be done on cloud as well and changing device type to cuda)
+This project is inspired from Vizuara build LLM from Scratch youtube series. This project is purely for learning intentions and include quite a good amount of experimental code as well which is not used finally. This repo is still in works and the code works till training LLM on mac laptop (can be done on cloud as well)
 
 **Credits**
 
