@@ -6,10 +6,14 @@ This project is inspired from Vizuara build LLM from Scratch youtube series. Thi
 
 This code is inspired from the youtube series: Build LLM from scratch by Vizuara.
 
-**Link to Series**:https://www.youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu
 
 
+**In order to run it on google cloud:, follow these instructions:**
 
+1) Go to google colab and set the runtime to T4
+2) !git clone https://github.com/adidwd/LLM_FROM_SCRATCH.git
+3) PLace you dataset within the folder "LLM_FROM_SCRATCH"
+4) Run train.py
 
 
 
