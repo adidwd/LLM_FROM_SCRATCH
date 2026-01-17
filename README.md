@@ -1,12 +1,22 @@
 # LLM_FROM_SCRATCH
 
-This project is inspired from Vizuara build LLM from Scratch youtube series. This project is purely for learning intentions and include quite a good amount of experimental code as well which is not used finally. This repo is still in works and the code works till training LLM on mac laptop (can be done on cloud as well)
+This project is inspired from Vizuara build LLM from Scratch youtube series. This project is purely for learning intentions and include quite a good amount of experimental code which is not used finally. This repo is still in works and the code works till training LLM on mac laptop (can be done on cloud as well)
 
 **Credits**
 
-This code is inspired from teh youtube series: Build LLM from scratch by Vizuara.
+This code is inspired from the youtube series: Build LLM from scratch by Vizuara.
 
 **Link to Series**:https://www.youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu
+
+
+
+**In order to run it on google cloud: Just follow these instructions:**
+
+1) Go to google colab and set the runtime to T4
+2) !git clone https://github.com/adidwd/LLM_FROM_SCRATCH.git
+3) PLace you dataset within the folder "LLM_FROM_SCRATCH"
+4) Run train.py
+
 
 **Module definition:**
 
