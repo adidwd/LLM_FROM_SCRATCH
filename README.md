@@ -10,7 +10,12 @@ This code is inspired from the youtube series: Build LLM from scratch by Vizuara
 
 
 
+**In order to run it on google cloud, follow these instructions:**
 
+1) Go to google colab and set the runtime to T4
+2) !git clone https://github.com/adidwd/LLM_FROM_SCRATCH.git
+3) PLace you dataset within the folder "LLM_FROM_SCRATCH"
+4) Run train.py
 
 
 **Module definition:**
