@@ -53,7 +53,7 @@ def generate_and_print_sample(model, tokenizer, device, start_context):
     with torch.no_grad():
         
         # Pass the tensor, not the list
-        token_ids = generator.generate(idx=encoded_tensor, temperature=0.75)
+        token_ids = generator.generate(idx=encoded_tensor, temperature=0.75, top_k=50)
     
     # squeeze(0) removes the batch dimension, and .tolist() converts it back for the tokenizer
     decoded_text = tokenizer.decode(token_ids.squeeze(0).tolist())

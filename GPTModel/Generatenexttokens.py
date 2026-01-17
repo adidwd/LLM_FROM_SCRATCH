@@ -11,7 +11,7 @@ class Generatetext(nn.Module):
         self.context_length=cfg["context_length"]
         self.model=model
     
-    def generate(self,idx, temperature=0.8):
+    def generate(self,idx, temperature=0.8, top_k=None):
 
         for _ in range(self.max_new_tokens):
             idx_cond=idx[:,-self.context_length:]
@@ -20,9 +20,17 @@ class Generatetext(nn.Module):
             with torch.no_grad():
                 logits=self.model(idx_cond) # dim==#batch, n_tokens,vocab_size
             
-            #We are getting the last logit for prediction for a new word, internally it predicts at each logit though
-
             logits=logits[:,-1,:]
+            #We are getting the last logit for prediction for a new word, internally it predicts at each logit though
+            if top_k is not None:
+                top_k_logits,_=torch.topk(logits,k=top_k)
+                min_val=top_k_logits[:,-1]
+
+                logits=torch.where(logits<min_val,torch.tensor(-float('inf')).to(logits.device),logits)
+
+
+
+            
 
             #print(f"logits ======== {logits}")
 
